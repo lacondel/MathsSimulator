@@ -1,7 +1,9 @@
 export const Colors = {
     purple: '#6200EE',
     purpleHover: '#5600D1',
-    white: '#fff'
+    white: '#fff',
+    black: '#000',
+    grey: '#C3C3C3'
 }
 
 export const Radius = {

@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { Input } from './shared/Input/Input';
-import { Button } from './shared/Button/Button';
-import { Gaps, Padding } from './shared/tokens';
+import { Input } from '../shared/Input/Input';
+import { Button } from '../shared/Button/Button';
+import { Gaps, Padding } from '../shared/tokens';
 
 export default function App() {
   return (

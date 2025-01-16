@@ -6,7 +6,7 @@ export function Input({...props}: TextInputProps) {
         <View>
             <TextInput 
                 style={styles.input}
-                placeholderTextColor={Colors.purple}
+                placeholderTextColor={Colors.grey}
                 {...props}
             />
         </View>
@@ -15,7 +15,7 @@ export function Input({...props}: TextInputProps) {
 
 const styles = StyleSheet.create({
     input: {
-        borderColor: Colors.purple,
+        borderColor: Colors.black,
         borderWidth: 1,
         borderRadius: Radius.r10,
         paddingHorizontal: Padding.p24,
