@@ -1,21 +1,29 @@
 import { Animated, Pressable, PressableProps, Text, View, StyleSheet, GestureResponderEvent } from "react-native";
 import { Colors, Fonts, Radius } from "../tokens";
 
-export function Button({ title, ...props }: PressableProps & { title: string }) {
+interface ButtonProps extends PressableProps {
+    title: string;
+    isDisabled?: boolean;
+}
+
+export function Button({ title, isDisabled = false, ...props }: ButtonProps) {
     const animatedValue = new Animated.Value(100);
     const color = animatedValue.interpolate({
         inputRange: [0, 100],
-        outputRange: [Colors.purpleHover, Colors.purple]
+        outputRange: [Colors.purpleHover, isDisabled ? Colors.grey : Colors.purple]
     });
 
     const fadeIn = (e: GestureResponderEvent) => {
-        Animated.timing(animatedValue, {
-            toValue: 0,
-            duration: 100,
-            useNativeDriver: true
-        }).start();
-        props.onPressIn && props.onPressIn(e);
-    }
+        if (!isDisabled) {
+            Animated.timing(animatedValue, {
+                toValue: 0,
+                duration: 100,
+                useNativeDriver: true
+            }).start();
+            props.onPressIn && props.onPressIn(e);
+        }
+    };
+
     const fadeOut = (e: GestureResponderEvent) => {
         Animated.timing(animatedValue, {
             toValue: 100,
@@ -23,10 +31,10 @@ export function Button({ title, ...props }: PressableProps & { title: string }) 
             useNativeDriver: true
         }).start();
         props.onPressOut && props.onPressOut(e);
-    }
+    };
 
     return (
-        <Pressable {...props} onPressIn={fadeIn} onPressOut={fadeOut}>
+        <Pressable {...props} onPressIn={fadeIn} onPressOut={fadeOut} disabled={isDisabled}>
             <Animated.View style={{ ...styles.button, backgroundColor: color }}>
                 <Text style={styles.text}>{title}</Text>
             </Animated.View>
@@ -40,7 +48,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: Radius.r10,
         height: 58,
-        backgroundColor: Colors.purple
     },
     text: {
         color: Colors.white,

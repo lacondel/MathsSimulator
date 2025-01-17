@@ -1,12 +1,21 @@
 import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
 import { Colors, Fonts, Padding, Radius } from "../tokens";
 
-export function Input({...props}: TextInputProps) {
+interface InputProps extends TextInputProps {
+    isDisabled?: boolean;
+    keyboardType?: TextInputProps['keyboardType'];
+    onSubmitEditing?: () => void;
+}
+
+export function Input({ isDisabled = false, keyboardType = 'default', onSubmitEditing, ...props }: InputProps) {
     return (
         <View>
-            <TextInput 
+            <TextInput
                 style={styles.input}
                 placeholderTextColor={Colors.grey}
+                editable={!isDisabled}
+                keyboardType={keyboardType}
+                onSubmitEditing={onSubmitEditing} 
                 {...props}
             />
         </View>
