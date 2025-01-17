@@ -18,7 +18,7 @@ export default function App() {
   const [totalAnswers, setTotalAnswers] = useState<number>(0);
   const [isStartDisabled, setIsStartDisabled] = useState<boolean>(false);
   const [isCheckDisabled, setIsCheckDisabled] = useState<boolean>(true);
-  const [bColor, setBColor] = useState<string>('white');
+  const [bColor, setBColor] = useState<string>(Colors.white);
 
   const handleGenerateExample = () => {
     const example = generateExample();
@@ -28,7 +28,7 @@ export default function App() {
     setAnswer('');
     setIsStartDisabled(true);
     setIsCheckDisabled(false);
-    setBColor('white');
+    setBColor(Colors.white);
   };
 
   const handleCheckAnswer = () => {
